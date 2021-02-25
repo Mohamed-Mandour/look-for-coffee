@@ -1,7 +1,7 @@
-plugins {
-    id 'com.android.application'
-    id 'kotlin-android'
-}
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 30
@@ -42,4 +42,19 @@ dependencies {
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
+    // okhttp3
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.13.1'
+    implementation 'com.squareup.okhttp3:okhttp:4.9.0'
+
+    // retrofit
+    def retrofitVersion = "2.6.2"
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+
+    //Room
+    def roomVersion = "2.2.6"
+    implementation "androidx.room:room-runtime:${roomVersion}"
+    kapt "androidx.room:room-compiler:${roomVersion}"
+    androidTestImplementation "androidx.room:room-testing:${roomVersion}"
 }
