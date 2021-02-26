@@ -3,16 +3,17 @@ package com.example.costaapp.model
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-data class Group (
-    @SerializedName("type")
-    @Expose
-    var type: String? = null,
+data class Category(
 
     @SerializedName("name")
     @Expose
     var name: String? = null,
 
-    @SerializedName("items")
+    @SerializedName("pluralName")
     @Expose
-    var items: List<Item>? = null
+    var pluralName: String? = null,
+
+    @SerializedName("icon")
+    @Expose
+    var icon: Icon? = null
 )
