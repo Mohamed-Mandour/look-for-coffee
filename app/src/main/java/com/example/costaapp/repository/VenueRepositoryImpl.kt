@@ -9,10 +9,12 @@ import com.example.costaapp.model.Item
 import com.example.costaapp.model.BaseResponse
 import com.example.costaapp.model.Venue
 import com.example.costaapp.networkcall.RetrofitClient
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import kotlin.concurrent.thread
 
 private const val TAG = "VenueRepositoryImpl"
 
@@ -35,13 +37,8 @@ class VenueRepositoryImpl : VenueRepository {
                     Log.d(TAG, "onResponse: ${response.isSuccessful}")
                     if (response.isSuccessful) {
                         data.value =  (response.body()?.response?.groups?.get(0)?.items)
-                        thread {
-                            val items = response.body()?.response?.groups?.get(0)?.items
-                            if (items != null) {
-                                for (item in items){
-                                    item.venue?.let { venueDao.insert(it) }
-                                }
-                            }
+                        GlobalScope.launch(Dispatchers.Default) {
+                            saveVenue(data.value)
                         }
                     }
                 }
@@ -50,6 +47,14 @@ class VenueRepositoryImpl : VenueRepository {
                 }
             })
         return data
+    }
+
+    private suspend fun saveVenue(items: List<Item>?) {
+            if (items != null) {
+                for (item in items) {
+                    item.venue?.let { venueDao.insert(it) }
+                }
+        }
     }
 
     override fun getSavedVenue() = allVenue
