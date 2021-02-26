@@ -3,17 +3,28 @@ package com.example.costaapp.repository
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.example.costaapp.database.VenueDao
+import com.example.costaapp.db
 import com.example.costaapp.model.Item
 import com.example.costaapp.model.BaseResponse
+import com.example.costaapp.model.Venue
 import com.example.costaapp.networkcall.RetrofitClient
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import kotlin.concurrent.thread
 
-class VenueRepositoryImpl() : VenueRepository {
+private const val TAG = "VenueRepositoryImpl"
 
-    private val TAG = "VenueRepositoryImpl"
+class VenueRepositoryImpl : VenueRepository {
+
     private val retrofitClient = RetrofitClient()
+    private val venueDao: VenueDao = db.venueDao()
+    private val allVenue: LiveData<List<Venue>>
+
+    init {
+        allVenue = venueDao.getAll()
+    }
 
     override fun getVenue(): MutableLiveData<List<Item>> {
         val venueRequest = retrofitClient.getVenue()
@@ -24,6 +35,14 @@ class VenueRepositoryImpl() : VenueRepository {
                     Log.d(TAG, "onResponse: ${response.isSuccessful}")
                     if (response.isSuccessful) {
                         data.value =  (response.body()?.response?.groups?.get(0)?.items)
+                        thread {
+                            val items = response.body()?.response?.groups?.get(0)?.items
+                            if (items != null) {
+                                for (item in items){
+                                    item.venue?.let { venueDao.insert(it) }
+                                }
+                            }
+                        }
                     }
                 }
                 override fun onFailure(call: Call<BaseResponse>, error: Throwable) {
@@ -32,6 +51,8 @@ class VenueRepositoryImpl() : VenueRepository {
             })
         return data
     }
+
+    override fun getSavedVenue() = allVenue
 
     override fun getVenueLocation(): LiveData<String> {
         val venueRequest = retrofitClient.getVenue()

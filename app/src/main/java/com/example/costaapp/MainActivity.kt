@@ -29,7 +29,12 @@ class MainActivity : AppCompatActivity() {
         viewModel.getAllVenue().observe(this, { item ->
             for(venue in item){
                 Log.d("MANDO", "venue: ${venue.venue?.name}")
-
+                val categories = venue.venue?.categories
+                if (categories != null) {
+                    for (icon in categories){
+                        Log.d("MANDO", "prefix: ${icon.icon?.prefix+"64"+icon.icon?.suffix}")
+                    }
+                }
             }
         })
     }

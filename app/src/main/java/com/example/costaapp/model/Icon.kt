@@ -3,13 +3,13 @@ package com.example.costaapp.model
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-class Meta {
+data class Icon(
 
-    @SerializedName("code")
+    @SerializedName("prefix")
     @Expose
-    var code: Int? = null
+    var prefix: String? = null,
 
-    @SerializedName("requestId")
+    @SerializedName("suffix")
     @Expose
-    var requestId: Any? = null
-}
+    var suffix: String? = null
+)
