@@ -50,8 +50,9 @@ dependencies {
     testImplementation 'org.mockito:mockito-inline:2.13.0'
 
     // okhttp3
+    def okhttpVersion = "4.9.0"
+    implementation "com.squareup.okhttp3:okhttp:$okhttpVersion"
     implementation 'com.squareup.okhttp3:logging-interceptor:3.13.1'
-    implementation 'com.squareup.okhttp3:okhttp:4.9.0'
 
     // retrofit
     def retrofitVersion = "2.7.2"
@@ -61,11 +62,19 @@ dependencies {
     //Room
     def roomVersion = "2.2.6"
     implementation "androidx.room:room-runtime:${roomVersion}"
+    implementation "androidx.room:room-ktx:${roomVersion}"
     kapt "androidx.room:room-compiler:${roomVersion}"
     androidTestImplementation "androidx.room:room-testing:${roomVersion}"
 
+     //coroutines
+    def coroutinesVersion = '1.4.1'
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"
+
+    // lifecycle
     def lifecycleVersion = '2.2.0'
     def lifecycleVersionKtx = '2.3.0'
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersionKtx"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersionKtx"
 }
