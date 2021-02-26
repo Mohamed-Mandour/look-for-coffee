@@ -9,6 +9,10 @@ import com.google.gson.annotations.SerializedName
 data class Venue (
 
     @PrimaryKey(autoGenerate = true)
+    @SerializedName("venue_id")
+    @Expose
+    var venueId: Int? = null,
+
     @SerializedName("id")
     @Expose
     var id: String? = null,
