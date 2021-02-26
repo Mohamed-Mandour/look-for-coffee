@@ -3,7 +3,7 @@ package com.example.costaapp.model
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-class MetaResponse {
+class BaseResponse {
     @SerializedName("meta")
     @Expose
     var meta: Meta? = null
