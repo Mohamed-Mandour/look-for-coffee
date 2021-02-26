@@ -3,11 +3,14 @@ package com.example.costaapp
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.lifecycleScope
 import com.example.costaapp.repository.VenueRepository
 import com.example.costaapp.repository.VenueRepositoryImpl
 import com.example.costaapp.viewModel.MainViewModel
 import com.example.costaapp.viewModel.MainViewModelFactory
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
     private val TAG = "MainActivity"
@@ -37,5 +40,11 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         })
-    }
+
+        lifecycleScope.launch {
+            venueRepository.getSavedVenue().observe(this@MainActivity, Observer {
+                venue ->
+                Log.d("MANDO", "getSavedVenue: ${venue[0]}")
+            })}
+        }
 }
