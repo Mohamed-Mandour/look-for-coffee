@@ -54,7 +54,7 @@ dependencies {
     implementation 'com.squareup.okhttp3:okhttp:4.9.0'
 
     // retrofit
-    def retrofitVersion = "2.6.2"
+    def retrofitVersion = "2.7.2"
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
     implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
 
@@ -63,4 +63,9 @@ dependencies {
     implementation "androidx.room:room-runtime:${roomVersion}"
     kapt "androidx.room:room-compiler:${roomVersion}"
     androidTestImplementation "androidx.room:room-testing:${roomVersion}"
+
+    def lifecycleVersion = '2.2.0'
+    def lifecycleVersionKtx = '2.3.0'
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersionKtx"
 }

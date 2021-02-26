@@ -1,7 +1,7 @@
 package com.example.costaapp.networkcall
 
 import com.example.costaapp.BuildConfig
-import com.example.costaapp.model.MetaResponse
+import com.example.costaapp.model.BaseResponse
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Call
@@ -16,7 +16,7 @@ class RetrofitClient {
     companion object {
         private const val CLIENT_ID = "ULEEKFKJW1NOK3B4SRCHKSJI5D2DL1EUHNGW3OHFWI4OOXXD"
         private const val CLIENT_SECRET = "LZE1IHQO05BX05OSYZMONQFMJR4PWSGLWTREIK4SGCA4EE5R"
-        private const val BASE_URL = "https://api.foursquare.com/v2/venues/"
+        private const val BASE_URL = "https://api.foursquare.com/v2/"
         private const val V = "20180323"
         private const val LL = "51.510288,-0.056160"
     }
@@ -37,7 +37,7 @@ class RetrofitClient {
         foursquareApi = retrofit.create(FoursquareApi::class.java)
     }
 
-    fun getForecast(): Call<MetaResponse> {
-        return foursquareApi.getVenue(CLIENT_ID, CLIENT_SECRET, V, 10, LL, "costa")
+    fun getVenue(): Call<BaseResponse> {
+        return foursquareApi.getVenue(CLIENT_ID, CLIENT_SECRET, V, 10, LL, "")
     }
 }

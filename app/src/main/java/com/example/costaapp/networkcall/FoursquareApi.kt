@@ -1,13 +1,13 @@
 package com.example.costaapp.networkcall
 
-import com.example.costaapp.model.MetaResponse
+import com.example.costaapp.model.BaseResponse
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface FoursquareApi {
 
-    @GET("explore")
+    @GET("venues/explore")
     fun getVenue(
         @Query("client_id") client_id: String,
         @Query("client_secret") client_secret: String,
@@ -15,5 +15,5 @@ interface FoursquareApi {
         @Query("limit") limit: Int,
         @Query("ll", encoded = true) ll: String?,
         @Query("query") search_venue: String
-    ): Call<MetaResponse>
+    ): Call<BaseResponse>
 }
