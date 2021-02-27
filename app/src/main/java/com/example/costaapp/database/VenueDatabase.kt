@@ -8,7 +8,7 @@ import androidx.room.TypeConverters
 import com.example.costaapp.model.Venue
 
 @TypeConverters(VenueConverter::class)
-@Database(entities = [Venue::class], version = 1)
+@Database(entities = [Venue::class], version = 3)
 abstract class VenueDatabase : RoomDatabase() {
 
     abstract fun venueDao(): VenueDao
@@ -23,6 +23,7 @@ abstract class VenueDatabase : RoomDatabase() {
                 if (INSTANCE == null) {
                     INSTANCE =
                         Room.databaseBuilder(application, VenueDatabase::class.java, DB_NAME)
+                            .fallbackToDestructiveMigration()
                             .build()
                 }
             }

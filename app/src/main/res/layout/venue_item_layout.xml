@@ -2,54 +2,81 @@
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    style="@style/MyCardViewStyle"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    style="@style/MyCardViewStyle"
     android:checkable="true"
     android:clickable="true"
     android:focusable="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/card_view"
-        android:layout_margin="@dimen/standard_margin"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="@dimen/card_layout_width"
+        android:layout_height="@dimen/card_layout_height"
         android:background="@color/coffee"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-            <ImageView
-                android:id="@+id/venue_image_logo"
-                android:layout_width="@dimen/image_view_width"
-                android:layout_height="@dimen/image_view_height"
-                android:layout_margin="@dimen/standard_margin"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:background="@color/card_coffee"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/coffee" />
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/venue_name"
-                android:layout_width="wrap_content"
-                android:layout_margin="@dimen/standard_margin"
-                android:textColor="@color/card_coffee"
-                android:layout_height="wrap_content"
-                android:paddingLeft="@dimen/standard_margin"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/venue_image_logo"
-                app:layout_constraintTop_toTopOf="@+id/venue_image_logo"
-                android:paddingStart="@dimen/standard_margin" />
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/venue_image_logo"
+            android:layout_width="@dimen/image_view_width"
+            android:layout_height="@dimen/image_view_height"
+            android:layout_margin="@dimen/standard_margin"
+            android:background="@color/coffee"
+            app:civ_border_color="@color/card_coffee"
+            app:civ_border_width="@dimen/very_small_margin"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/coffee" />
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/venue_verified"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/card_coffee"
-                android:layout_margin="@dimen/standard_margin"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.483"
-                app:layout_constraintStart_toEndOf="@+id/venue_image_logo"
-                app:layout_constraintTop_toBottomOf="@+id/venue_name" />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/venue_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/standard_margin"
+            android:layout_marginTop="@dimen/standard_margin"
+            android:shadowColor="@color/card_coffee"
+            android:shadowDx="0.1"
+            android:shadowDy="0.1"
+            android:shadowRadius="16"
+            android:text="@string/radioactive"
+            android:textColor="@color/card_coffee"
+            android:textSize="22sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/venue_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            style="@style/TextViewStyle"
+            android:text="@string/costa_canary_love"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/venue_image_logo"
+            app:layout_constraintTop_toBottomOf="@+id/venue_type" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/venue_summary"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            style="@style/TextViewStyle"
+            android:text="@string/this_spot_is_popular"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/venue_image_logo"
+            app:layout_constraintTop_toBottomOf="@+id/venue_name" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/venue_verified"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            style="@style/TextViewStyle"
+            android:text="@string/yes"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/venue_image_logo"
+            app:layout_constraintTop_toBottomOf="@+id/venue_summary" />
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>

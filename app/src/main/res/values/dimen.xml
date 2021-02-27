@@ -9,7 +9,9 @@
     <dimen name="extra_large_margin">40dp</dimen>
 
 
-    <dimen name="card_view">130sp</dimen>
-    <dimen name="image_view_width">150sp</dimen>
-    <dimen name="image_view_height">110sp</dimen>
+    <dimen name="card_view">180sp</dimen>
+    <dimen name="image_view_width">103dp</dimen>
+    <dimen name="image_view_height">119sp</dimen>
+    <dimen name="card_layout_width">385dp</dimen>
+    <dimen name="card_layout_height">160sp</dimen>
 </resources>

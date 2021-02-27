@@ -6,6 +6,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.costaapp.model.Reason
 import com.example.costaapp.model.Venue
 import com.example.costaapp.repository.VenueRepository
 import com.example.costaapp.repository.VenueRepositoryImpl
@@ -19,9 +20,9 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var viewModel: MainViewModel
     private lateinit var venueRepository: VenueRepository
-    private val adapter = VenueAdapter(mutableListOf())
+    private val adapter = VenueAdapter(mutableListOf(), mutableListOf())
     private var venueList = mutableListOf<Venue>()
-
+    private var reasonList = mutableListOf<Reason>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -33,8 +34,9 @@ class MainActivity : AppCompatActivity() {
         viewModel.getAllVenue().observe(this, { item ->
             for(venue in item){
                 venue.venue?.let { venueList.add(it) }
+                venue.reasons?.let { reasonList.add(it) }
             }
-            adapter.setVenue(venueList)
+            adapter.setVenue(venueList, reasonList)
         })
 
         lifecycleScope.launch {
