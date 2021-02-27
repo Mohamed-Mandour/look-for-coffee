@@ -9,5 +9,9 @@ data class Item(
 
     @SerializedName("venue")
     @Expose
-    var venue: Venue? = null
+    var venue: Venue? = null,
+
+    @SerializedName("reasons")
+   @Expose
+   var reasons: Reason? = null
 )
