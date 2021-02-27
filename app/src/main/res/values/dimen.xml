@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="very_small_margin">4dp</dimen>
+    <dimen name="small_margin">8dp</dimen>
+    <dimen name="medium_margin">12dp</dimen>
+    <dimen name="standard_margin">16dp</dimen>
+    <dimen name="above_standard_margin">22dp</dimen>
+    <dimen name="large_margin">32dp</dimen>
+    <dimen name="extra_large_margin">40dp</dimen>
+
+
+    <dimen name="card_view">130sp</dimen>
+    <dimen name="image_view_width">150sp</dimen>
+    <dimen name="image_view_height">110sp</dimen>
+</resources>
