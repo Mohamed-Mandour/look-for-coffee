@@ -54,6 +54,7 @@ dependencies {
     //Picasso
     def picassoVersion = "2.71828"
     implementation "com.squareup.picasso:picasso:$picassoVersion"
+    implementation 'de.hdodenhof:circleimageview:2.0.0'
 
     // okhttp3
     def okhttpVersion = "4.9.0"
