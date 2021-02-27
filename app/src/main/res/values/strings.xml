@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">CostaApp</string>
+    <string name="radioactive">Radioactive</string>
+    <string name="costa_canary_love">Costa canary love</string>
+    <string name="yes">This place is verified</string>
+    <string name="this_spot_is_popular">This spot is popular</string>
 </resources>
