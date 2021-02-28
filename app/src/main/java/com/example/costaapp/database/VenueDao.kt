@@ -11,7 +11,7 @@ import com.example.costaapp.model.Venue
 interface VenueDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(venue: Venue)
+     fun insert(vararg venue: Venue)
 
     @Query("select * from venue")
     fun getAll(): LiveData<List<Venue>>
