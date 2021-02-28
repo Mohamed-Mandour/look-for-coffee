@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.costaapp.database.VenueDao
 import com.example.costaapp.db
+import com.example.costaapp.location.DeviceLocation
 import com.example.costaapp.model.Item
 import com.example.costaapp.model.BaseResponse
 import com.example.costaapp.model.Venue
@@ -18,9 +19,9 @@ import retrofit2.Response
 
 private const val TAG = "VenueRepositoryImpl"
 
-class VenueRepositoryImpl : VenueRepository {
+class VenueRepositoryImpl(private val location: DeviceLocation?) : VenueRepository {
 
-    private val retrofitClient = RetrofitClient()
+    private val retrofitClient = RetrofitClient(location)
     private val venueDao: VenueDao = db.venueDao()
     private val allVenue: LiveData<List<Venue>>
 
