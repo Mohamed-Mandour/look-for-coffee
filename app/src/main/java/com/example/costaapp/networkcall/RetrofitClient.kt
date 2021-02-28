@@ -1,6 +1,7 @@
 package com.example.costaapp.networkcall
 
 import com.example.costaapp.BuildConfig
+import com.example.costaapp.location.DeviceLocation
 import com.example.costaapp.model.BaseResponse
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -9,7 +10,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 
-class RetrofitClient {
+class RetrofitClient(private val location: DeviceLocation?) {
 
     private var foursquareApi: FoursquareApi
 
@@ -18,7 +19,8 @@ class RetrofitClient {
         private const val CLIENT_SECRET = "LZE1IHQO05BX05OSYZMONQFMJR4PWSGLWTREIK4SGCA4EE5R"
         private const val BASE_URL = "https://api.foursquare.com/v2/"
         private const val V = "20180323"
-        private const val LL = "51.510288,-0.056160"
+        private const val VENUE_PARAM = "coffee"
+        private const val LIMIT = 50
     }
 
     init {
@@ -38,6 +40,18 @@ class RetrofitClient {
     }
 
     fun getVenue(): Call<BaseResponse> {
-        return foursquareApi.getVenue(CLIENT_ID, CLIENT_SECRET, V, 10, LL, "")
+
+        return foursquareApi.getVenue(
+            CLIENT_ID,
+            CLIENT_SECRET,
+            V,
+            LIMIT,
+            locationFormat(),
+            VENUE_PARAM
+        )
+    }
+
+    private fun locationFormat(): String {
+        return "${location?.latitude},${location?.longitude}"
     }
 }
