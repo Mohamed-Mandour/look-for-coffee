@@ -20,6 +20,7 @@ import com.example.costaapp.networkcall.RetrofitClient
 import com.example.costaapp.repository.LocationRepositoryImpl
 import com.example.costaapp.repository.VenueRepository
 import com.example.costaapp.repository.VenueRepositoryImpl
+import com.example.costaapp.utils.DeviceSdk
 import com.example.costaapp.viewAdpater.VenueAdapter
 import com.example.costaapp.viewModel.MainViewModel
 import com.example.costaapp.viewModel.MainViewModelFactory
@@ -36,6 +37,7 @@ class MainActivity : AppCompatActivity() {
     private val locationRepository = LocationRepositoryImpl
     private val adapter = VenueAdapter(mutableListOf(), mutableListOf())
     private var location: DeviceLocation? = null
+    private val sdkDevice = DeviceSdk()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,7 +52,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun requestCallToApi() {
-        locationRepository.initialize(applicationContext)
+        locationRepository.initialize(applicationContext, sdkDevice)
         location = locationRepository.location
         retrofitClient = RetrofitClient(location)
         getDataFromRepo()
@@ -72,7 +74,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun requestLocationPermission() {
-        val permissionChecker: PermissionChecker = PermissionCheckerImpl(application)
+        val permissionChecker: PermissionChecker = PermissionCheckerImpl(application, sdkDevice)
         val hasAnyLocationPermissions = permissionChecker.hasAnyLocationPermissions
         Log.d(TAG, "hasAnyLocationPermissions: $hasAnyLocationPermissions")
         if (!hasAnyLocationPermissions) {
@@ -133,7 +135,7 @@ class MainActivity : AppCompatActivity() {
                     ).show()
                 } else {
                     requestCallToApi()
-                    locationRepository.requestLocationUpdate()
+                    locationRepository?.requestLocationUpdate()
                 }
             }
         }

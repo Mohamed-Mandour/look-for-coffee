@@ -8,6 +8,7 @@ import com.example.costaapp.location.DeviceLocation
 import com.example.costaapp.location.PermissionChecker
 import com.example.costaapp.location.PermissionCheckerImpl
 import com.example.costaapp.networkcall.RetrofitClient
+import com.example.costaapp.utils.DeviceSdk
 import com.google.android.gms.location.*
 
 private const val TAG = "LocationRepositoryImpl"
@@ -20,9 +21,9 @@ object LocationRepositoryImpl : LocationRepository {
     private var permissionChecker: PermissionChecker? = null
     private var retrofitClient: RetrofitClient? = null
 
-    fun initialize(context: Context) {
+    fun initialize(context: Context, deviceSdk: DeviceSdk) {
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(context)
-        permissionChecker = PermissionCheckerImpl(context)
+        permissionChecker = PermissionCheckerImpl(context, deviceSdk)
         retrofitClient = RetrofitClient(mLocation)
         createLocationRequest()
     }
