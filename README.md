@@ -1,6 +1,6 @@
 **Look For venue (coffee)**
 
-# Prerequisites<h1>
+## Prerequisites
  * Android Studio
  * Android Gradle Plugin
  * Kotlin
