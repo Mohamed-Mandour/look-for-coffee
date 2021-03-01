@@ -1,4 +1,4 @@
-**Look For venue (coffee)**
+## Look For Venue (CostaApp)
 
 ## Prerequisites
  * Android Studio
