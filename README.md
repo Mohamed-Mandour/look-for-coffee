@@ -25,6 +25,7 @@ This project follows the MVVM architecture design pattern to achieve the separat
  * To handle the background thread and all the asynchronous call  `kotlin coroutines` have been used. 
  * The observable data holder class `LiveData` have been used to hold the data between the views and the `viewModel`.
  * The `material design` guidelines have also been used to design and structure the UI as well as the use of `Picasso` for parsing the images endpoint.
+ * This app use `Fusedlocationproviderclient` to get the device location and it used to make a request call to the endpoint. 
  
  ## Testing
 This project includes three different types of testing:
