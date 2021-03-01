@@ -50,7 +50,7 @@ class VenueRepositoryImpl(private val location: DeviceLocation?) : VenueReposito
         return data
     }
 
-    private suspend fun saveVenue(items: List<Item>?) {
+    private fun saveVenue(items: List<Item>?) {
             if (items != null) {
                 for (item in items) {
                     item.venue?.let { venueDao.insert(it) }

@@ -1,11 +1,12 @@
 package com.example.costaapp.utils
 
 import android.net.ConnectivityManager
-import com.nhaarman.mockitokotlin2.*
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.mockito.BDDMockito.given
 import org.mockito.Mock
+import org.mockito.Mockito.*
 import org.mockito.junit.MockitoJUnitRunner
 
 @RunWith(MockitoJUnitRunner::class)
@@ -26,10 +27,9 @@ class NetworkStatusCheckerTest {
         // Given
         given(networkChangeReceiver.hasInternetConnection()).willReturn(false)
         // When
-        val callback = mock<() -> Unit>()
-        networkChangeReceiver.checkConnectionToInternet { callback }
+        networkChangeReceiver.checkConnectionToInternet {  calls(0) }
         // Then
-        verifyZeroInteractions(callback)
+        verify(networkChangeReceiver, times(1)).checkConnectionToInternet {  calls(1) }
     }
 
     @Test
@@ -37,10 +37,10 @@ class NetworkStatusCheckerTest {
         // Given
         given(networkChangeReceiver.hasInternetConnection()).willReturn(true)
         // When
-        val callback = mock<() -> Unit>()
-        networkChangeReceiver.checkConnectionToInternet { callback }
+
+        networkChangeReceiver.checkConnectionToInternet { calls(1) }
         // Then
-        verify(networkChangeReceiver, times(1)).checkConnectionToInternet { callback }
+        verify(networkChangeReceiver, times(1)).checkConnectionToInternet {  calls(1) }
     }
 
 }

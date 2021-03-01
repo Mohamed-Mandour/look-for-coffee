@@ -3,12 +3,12 @@ package com.example.costaapp.location
 import android.Manifest
 import android.content.Context
 import com.example.costaapp.utils.DeviceSdk
-import com.nhaarman.mockitokotlin2.given
-import com.nhaarman.mockitokotlin2.spy
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.mockito.BDDMockito.given
 import org.mockito.Mock
+import org.mockito.Mockito.spy
 import org.mockito.junit.MockitoJUnitRunner
 
 private const val PERMISSION_GRANTED = 0
