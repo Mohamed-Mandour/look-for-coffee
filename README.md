@@ -9,7 +9,7 @@
  * Clone/Download the project from GitHub **You must be on the master branch**.
  * Use Android Studio to import the Project.
  * After compiling and before running the project you need to add your own Foursquare Client ID & Client Secret. 
- * Search on a class named `RetrofitClient` and replace the value of  `CLIENT_ID` and  `CLIENT_SECRET` with your own. 
+ * Search for a class named `RetrofitClient` and replace the value of  `CLIENT_ID` and  `CLIENT_SECRET` with your own. 
  * Run the project and you should see the app running
  
 ## Development approach and architecture
